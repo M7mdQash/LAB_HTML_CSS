@@ -1,169 +1,475 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>CV</title>
+    <title>Mohammad Kashkari — Portfolio</title>
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --accent: #0d6efd;
+            --accent-light: rgba(13, 110, 253, 0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* ── Navbar ── */
+        .navbar-brand { font-weight: 700; letter-spacing: .5px; }
+
+        /* ── Hero ── */
+        #hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0f1e 0%, #0d1b3e 60%, #091535 100%);
+            display: flex;
+            align-items: center;
+        }
+        #hero .hero-label {
+            color: var(--accent);
+            font-size: .9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        #hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        .hero-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        .contact-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .35rem .85rem;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 50px;
+            font-size: .85rem;
+            color: rgba(255,255,255,.8);
+            text-decoration: none;
+            transition: border-color .2s, color .2s;
+        }
+        .contact-chip:hover { border-color: var(--accent); color: #fff; }
+
+        /* ── Section titles ── */
+        .section-heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .section-heading::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin-top: .4rem;
+        }
+
+        /* ── Photo placeholder ── */
+        .photo-placeholder {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            border: 3px dashed var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ── Education cards ── */
+        .edu-logo-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 10px;
+            background: var(--accent-light);
+            border: 1px solid rgba(13,110,253,.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ── Timeline ── */
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: .55rem;
+            top: .5rem;
+            bottom: .5rem;
+            width: 2px;
+            background: rgba(13,110,253,.25);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 1.25rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-light);
+        }
+        .timeline-item { position: relative; padding-left: 1.5rem; margin-bottom: 1.75rem; }
+        .timeline-item:last-child { margin-bottom: 0; }
+
+        /* ── Skill badges ── */
+        .skill-badge {
+            display: inline-block;
+            padding: .35rem .8rem;
+            border-radius: 50px;
+            font-size: .8rem;
+            font-weight: 500;
+        }
+
+        /* ── Language cards ── */
+        .lang-card { border-left: 3px solid var(--accent); }
+
+        /* ── General card hover ── */
+        .card { transition: transform .2s, box-shadow .2s; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.4) !important; }
+
+        /* ── Footer ── */
+        footer { border-top: 1px solid rgba(255,255,255,.08); }
+    </style>
 </head>
 <body>
-    <div class="cv-container">
 
-        <!-- Header -->
-        <header class="cv-header">
-            <h1 class="cv-name">Mohammad Kashkari</h1>
-            <div class="cv-contact">
-                <span class="contact-item contact-location">Saudi Arabia</span>
-                <span class="contact-separator">|</span>
-                <span class="contact-item contact-phone">(966)54 109 0164</span>
-                <span class="contact-separator">|</span>
-                <a class="contact-item contact-email" href="mailto:mohammad.kashkari@outlook.com">mohammad.kashkari@outlook.com</a>
-                <span class="contact-separator">|</span>
-                <a class="contact-item contact-linkedin" href="#">LinkedIn</a>
-                <span class="contact-separator">|</span>
-                <a class="contact-item contact-github" href="#">Github</a>
-            </div>
-        </header>
-
-        <!-- Profile -->
-        <section class="cv-section cv-profile">
-            <h2 class="section-title">Profile</h2>
-            <p class="profile-text">
-                Ambitious and flexible Computer science Graduate looking to learn and leverage experience on all things
-                about software engineering and Cyber security, Motivated and eager to learn from senior Developers
-                while using and implementing advanced Frameworks such as React and flask.
-            </p>
-        </section>
-
-        <!-- Education -->
-        <section class="cv-section cv-education">
-            <h2 class="section-title">Education</h2>
-            <ul class="education-list">
-                <li class="education-item">
-                    <div class="education-header">
-                        <div class="education-info">
-                            <span class="institution-name">Umm al Qura university</span>
-                            <span class="education-separator"> | </span>
-                            <span class="degree">Bachelor of Computer Science</span>
-                        </div>
-                        <div class="education-meta">
-                            <span class="education-location">Mecca, Makkah</span>
-                            <span class="education-separator"> | </span>
-                            <span class="education-date">2021 - 2025</span>
-                        </div>
-                    </div>
-                    <ul class="education-details">
-                        <li>Honors with certificate of good conduct</li>
-                    </ul>
-                </li>
-                <li class="education-item">
-                    <div class="education-header">
-                        <div class="education-info">
-                            <span class="institution-name">Tuwaig Academy</span>
-                            <span class="education-separator"> | </span>
-                            <span class="degree">Python web development bootcamp</span>
-                        </div>
-                        <div class="education-meta">
-                            <span class="education-location">Riyadh, Riyadh</span>
-                            <span class="education-separator"> | </span>
-                            <span class="education-date">2026 - present</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Experience -->
-        <section class="cv-section cv-experience">
-            <h2 class="section-title">Experience</h2>
-            <ul class="experience-list">
-
-                <li class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-info">
-                            <span class="job-title">IT specialist trainee</span>
-                            <span class="experience-separator">, </span>
-                            <span class="company-name">Voco Mecca</span>
-                        </div>
-                        <span class="experience-date">July 2025 – December 2025</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Troubleshot and resolved hardware–software integration problems, including driver reinstalls, network registrations, and system connectivity failures.</li>
-                        <li>Automated and optimized system maintenance tasks by identifying recurring IT issues and streamlining update processes across multiple departments.</li>
-                        <li>Developed problem-solving workflows for diagnosing and documenting system-level issues, enabling faster root cause analysis.</li>
-                    </ul>
-                </li>
-
-                <li class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-info">
-                            <span class="job-title">Access control agent</span>
-                            <span class="experience-separator">, </span>
-                            <span class="company-name">AlYamama company</span>
-                        </div>
-                        <span class="experience-date">June 2025 - June 2025</span>
-                    </div>
-                    <ul class="experience-details">
-                        <li>Leveraged communication skills in both English and Arabic to assist in hajj mashair train operation</li>
-                        <li>Worked in teams of 8 to manage the pilgrims train entry process</li>
-                    </ul>
-                </li>
-
-            </ul>
-        </section>
-
-        <!-- Skills -->
-        <section class="cv-section cv-skills">
-            <h2 class="section-title">Skills</h2>
-            <table class="skills-table">
-                <tbody>
-                    <tr class="skills-row">
-                        <th class="skills-category">Soft skills</th>
-                        <td class="skills-list">Cross department communication, critical thinking, Teamwork, end user communication, problem solving, adaptability, attention to detail</td>
-                    </tr>
-                    <tr class="skills-row">
-                        <th class="skills-category">Hard skills</th>
-                        <td class="skills-list">Front end design, API integration, Python flask, React and react native, JavaScript HTML and CSS, jQuery, Backend development, git, SQLite, NodeJS, MySQL</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Projects -->
-        <section class="cv-section cv-projects">
-            <h2 class="section-title">Projects</h2>
-            <ul class="projects-list">
-                <li class="project-item">
-                    <div class="project-header">
-                        <span class="project-name">Graduation project: Stock market prediction using Machine learning</span>
-                        <span class="project-date">January 2025</span>
-                    </div>
-                    <ul class="project-details">
-                        <li>Developed a program to predict the prices of the Saudi Arabian stock market using deep learning machine models with a 92% one day prediction accuracy.</li>
-                        <li>Implemented NumPy, matplotlib and pandas for data and implemented TensorFlow keras for model training, implemented Flask framework for displaying predictions.</li>
-                    </ul>
-                </li>
-            </ul>
-
-            <div class="courses-wrapper">
-                <h3 class="courses-title">Courses and training</h3>
-                <ul class="courses-list">
-                    <li class="course-item">KAUST introduction into cyber security</li>
-                    <li class="course-item">META react native specialization</li>
-                    <li class="course-item">SATR python 101, python 102</li>
+    <!--  NAVBAR  -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-75 fixed-top backdrop-blur shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">MK</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto gap-1">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#languages">Languages</a></li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-primary btn-sm px-3" href="mailto:mohammad.kashkari@outlook.com">Hire Me</a>
+                    </li>
                 </ul>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <!-- Languages -->
-        <section class="cv-section cv-languages">
-            <h2 class="section-title">Languages</h2>
-            <ul class="languages-list">
-                <li class="language-item">Native in Arabic</li>
-                <li class="language-item">Fluent in English <span class="language-score">(STEP exam: 93)</span></li>
-            </ul>
-        </section>
 
-    </div>
+    <!--  HERO  -->
+    <section id="hero">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-8">
+                    <p class="hero-label mb-3">Software Engineer</p>
+                    <h1 class="text-white mb-3">Mohammad<br>Kashkari</h1>
+                    <div class="hero-divider mb-4"></div>
+                    <p class="text-secondary mb-4" style="max-width:520px;line-height:1.7;">
+                        Ambitious Computer Science graduate passionate about software engineering
+                        and cybersecurity — building with React, Flask, Laravel, and machine learning.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="contact-chip" href="mailto:mohammad.kashkari@outlook.com">
+                            <i class="bi bi-envelope-fill"></i> mohammad.kashkari@outlook.com
+                        </a>
+                        <span class="contact-chip">
+                            <i class="bi bi-telephone-fill"></i> (966) 54 109 0164
+                        </span>
+                        <span class="contact-chip">
+                            <i class="bi bi-geo-alt-fill"></i> Saudi Arabia
+                        </span>
+                        <a class="contact-chip" href="#">
+                            <i class="bi bi-linkedin"></i> LinkedIn
+                        </a>
+                        <a class="contact-chip" href="#">
+                            <i class="bi bi-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--  ABOUT  -->
+    <section id="about" class="py-5 bg-body-secondary">
+        <div class="container py-4">
+            <h2 class="section-heading mb-5">About Me</h2>
+            <div class="d-flex flex-column flex-md-row align-items-center gap-4">
+                <img src="img/PersonalPhoto.png.jpg" alt="not loaded" class="photo-placeholder" />
+                <p class="lead mb-0" style="line-height:1.8;">
+                    Ambitious and flexible Computer Science Graduate looking to learn and leverage experience
+                    on all things about software engineering and Cyber security. Motivated and eager to learn
+                    from senior Developers while using and implementing advanced frameworks such as React and Flask.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!--  EDUCATION  -->
+    <section id="education" class="py-5">
+        <div class="container py-4">
+            <h2 class="section-heading mb-5">Education</h2>
+            <div class="row g-4">
+
+                <div class="col-md-6">
+                    <div class="card h-100 bg-body-secondary border-0 rounded-4 p-4">
+                        <div class="d-flex gap-3 align-items-start">
+                            
+                            <img src="img/uqu-logo.png" alt="Umm al Qura University logo not loaded yet" class="edu-logo-box" /> 
+                            <div>
+                                <h5 class="fw-bold mb-1">Umm al Qura University</h5>
+                                <p class="text-primary mb-1 fw-semibold">Bachelor of Computer Science</p>
+                                <p class="text-secondary small mb-2">
+                                    <i class="bi bi-geo-alt me-1"></i>Mecca, Makkah &nbsp;·&nbsp;
+                                    <i class="bi bi-calendar3 me-1"></i>2021 – 2025
+                                </p>
+                                <ul class="list-unstyled mb-0 small text-secondary">
+                                    <li><i class="bi bi-award-fill text-warning me-1"></i>Honors with certificate of good conduct</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 bg-body-secondary border-0 rounded-4 p-4">
+                        <div class="d-flex gap-3 align-items-start">
+                            
+                            <img src="img/tuwaiqacademy_logo-3666073931.jpg" alt="Tuwaig Academy logo not loaded yet" class="edu-logo-box" />
+                            <div>
+                                <h5 class="fw-bold mb-1">Tuwaig Academy</h5>
+                                <p class="text-primary mb-1 fw-semibold">Python Web Development Bootcamp</p>
+                                <p class="text-secondary small mb-0">
+                                    <i class="bi bi-geo-alt me-1"></i>Riyadh, Riyadh &nbsp;·&nbsp;
+                                    <i class="bi bi-calendar3 me-1"></i>2026 – present
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!--  EXPERIENCE  -->
+    <section id="experience" class="py-5 bg-body-secondary">
+        <div class="container py-4">
+            <h2 class="section-heading mb-5">Experience</h2>
+            <div class="timeline">
+
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="card bg-dark border-0 rounded-4 p-4">
+                        <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-2">
+                            <div>
+                                <h5 class="fw-bold mb-0">IT Specialist Trainee</h5>
+                                <span class="text-primary fw-semibold small">Voco Mecca</span>
+                            </div>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">Jul – Dec 2025</span>
+                        </div>
+                        <ul class="text-secondary small mb-0 ps-3">
+                            <li class="mb-1">Troubleshot and resolved hardware–software integration problems including driver reinstalls and network connectivity failures</li>
+                            <li class="mb-1">Automated and optimized system maintenance tasks across multiple departments</li>
+                            <li>Developed problem-solving workflows for diagnosing and documenting system-level issues</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="card bg-dark border-0 rounded-4 p-4">
+                        <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-2">
+                            <div>
+                                <h5 class="fw-bold mb-0">Access Control Agent</h5>
+                                <span class="text-primary fw-semibold small">AlYamama Company</span>
+                            </div>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">Jun 2025</span>
+                        </div>
+                        <ul class="text-secondary small mb-0 ps-3">
+                            <li class="mb-1">Leveraged communication skills in English and Arabic to assist in hajj mashair train operation</li>
+                            <li>Worked in teams of 8 to manage the pilgrims train entry process</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!--  SKILLS  -->
+    <section id="skills" class="py-5">
+        <div class="container py-4">
+            <h2 class="section-heading mb-5">Skills</h2>
+            <div class="row g-4">
+
+                <div class="col-md-7">
+                    <div class="card bg-body-secondary border-0 rounded-4 p-4 h-100">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-code-slash text-primary me-2"></i>Hard Skills</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="skill-badge bg-primary-subtle text-primary">Python Flask</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">React</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">React Native</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">JavaScript</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">HTML &amp; CSS</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">jQuery</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">Laravel PHP</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">Node.js</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">API Integration</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">MySQL</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">SQLite</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">Git</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">Machine Learning</span>
+                            <span class="skill-badge bg-primary-subtle text-primary">TensorFlow / Keras</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="card bg-body-secondary border-0 rounded-4 p-4 h-100">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-people-fill text-success me-2"></i>Soft Skills</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="skill-badge bg-success-subtle text-success">Critical Thinking</span>
+                            <span class="skill-badge bg-success-subtle text-success">Teamwork</span>
+                            <span class="skill-badge bg-success-subtle text-success">Problem Solving</span>
+                            <span class="skill-badge bg-success-subtle text-success">Adaptability</span>
+                            <span class="skill-badge bg-success-subtle text-success">Cross-dept Communication</span>
+                            <span class="skill-badge bg-success-subtle text-success">Attention to Detail</span>
+                            <span class="skill-badge bg-success-subtle text-success">End User Communication</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!--  PROJECTS  -->
+    <section id="projects" class="py-5 bg-body-secondary">
+        <div class="container py-4">
+            <h2 class="section-heading mb-5">Projects</h2>
+            <div class="row g-4 mb-5">
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="card bg-dark border-0 rounded-4 p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <h5 class="fw-bold mb-0">Stock Market Prediction</h5>
+                            <span class="badge bg-secondary rounded-pill">Jan 2025</span>
+                        </div>
+                        <p class="text-primary small fw-semibold mb-3">Graduation Project — Machine Learning</p>
+                        <ul class="text-secondary small mb-0 ps-3">
+                            <li class="mb-1">Predicted Saudi Arabian stock prices using deep learning with <strong class="text-white">92% one-day accuracy</strong></li>
+                            <li>Built with NumPy, pandas, matplotlib, TensorFlow Keras, and Flask</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Courses -->
+            <h4 class="fw-bold mb-3">Courses &amp; Training</h4>
+            <div class="row g-3">
+                <div class="col-sm-6 col-md-4">
+                    <div class="card bg-dark border-0 rounded-4 p-3 h-100">
+                        <i class="bi bi-shield-lock-fill text-primary fs-4 mb-2"></i>
+                        <p class="fw-semibold mb-0 small">KAUST — Introduction to Cyber Security</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card bg-dark border-0 rounded-4 p-3 h-100">
+                        <i class="bi bi-phone-fill text-primary fs-4 mb-2"></i>
+                        <p class="fw-semibold mb-0 small">META — React Native Specialization</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card bg-dark border-0 rounded-4 p-3 h-100">
+                        <i class="bi bi-filetype-py text-primary fs-4 mb-2"></i>
+                        <p class="fw-semibold mb-0 small">SATR — Python 101 &amp; 102</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--  LANGUAGES  -->
+    <section id="languages" class="py-5">
+        <div class="container py-4">
+            <h2 class="section-heading mb-5">Languages</h2>
+            <div class="row g-4">
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="card lang-card bg-body-secondary border-0 rounded-4 p-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-translate fs-3 text-primary"></i>
+                            <div>
+                                <h5 class="fw-bold mb-0">Arabic</h5>
+                                <span class="badge bg-primary rounded-pill mt-1">Native</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="card lang-card bg-body-secondary border-0 rounded-4 p-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-translate fs-3 text-primary"></i>
+                            <div>
+                                <h5 class="fw-bold mb-0">English</h5>
+                                <div class="d-flex align-items-center gap-2 mt-1">
+                                    <span class="badge bg-primary rounded-pill">Fluent</span>
+                                    <span class="badge bg-warning text-dark rounded-pill">STEP: 93</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!--  FOOTER  -->
+    <footer class="py-4 text-center text-secondary">
+        <div class="container">
+            <p class="mb-0 small">&copy; 2026 Mohammad Kashkari — All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Smooth navbar hide on scroll past hero -->
+    <script>
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('bg-opacity-100', window.scrollY > 60);
+        });
+    </script>
 </body>
 </html>
