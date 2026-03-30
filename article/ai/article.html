@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The AI Revolution</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ── Custom Properties ─────────────────────────── */
+      :root {
+        --ink:     #0f172a;
+        --muted:   #64748b;
+        --accent:  #6366f1;
+        --accent2: #06b6d4;
+        --surface: #f8fafc;
+        --border:  #e2e8f0;
+      }
+
+      /* ── Base ──────────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: Georgia, serif;
+        font-size: 1.05rem;
+        line-height: 1.85;
+        color: var(--ink);
+        background: var(--surface);
+        margin: 0;
+      }
+
+      /* ── HEADER ────────────────────────────────────── */
+      header {
+        background: linear-gradient(135deg, #0f172a 0%, #312e81 60%, #1e1b4b 100%);
+        color: #fff;
+        padding: 4rem 1.5rem 3rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* animated starfield dots */
+      header::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: drift 18s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes drift {
+        from { background-position: 0 0; }
+        to   { background-position: 40px 40px; }
+      }
+
+      header h1 {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: clamp(2rem, 6vw, 3.6rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin: 0 0 0.4rem;
+        position: relative;
+      }
+
+      header p.lead {
+        font-size: 1.1rem;
+        color: #a5b4fc;
+        max-width: 580px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      /* ── NAV ───────────────────────────────────────── */
+      nav {
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        padding: 0.6rem 1.5rem;
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      }
+
+      nav a {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--muted);
+        padding: 0.3rem 0;
+        border-bottom: 2px solid transparent;
+        transition: color 0.2s, border-color 0.2s;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      /* ── LAYOUT ────────────────────────────────────── */
+      .page-wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem;
+        display: flex;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+
+      main {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+
+      aside {
+        width: 260px;
+        flex-shrink: 0;
+      }
+
+      /* ── MAIN ARTICLE ──────────────────────────────── */
+      article > section {
+        margin-bottom: 3rem;
+      }
+
+      article h2 {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 1.55rem;
+        font-weight: 700;
+        color: var(--ink);
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 0.4rem;
+        margin-bottom: 1rem;
+      }
+
+      article h3 {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin: 1.6rem 0 0.4rem;
+      }
+
+      article p { margin: 0 0 1rem; }
+
+      article p:first-of-type::first-letter {
+        font-size: 3.2rem;
+        font-weight: 700;
+        float: left;
+        line-height: 1;
+        margin: 0.05em 0.1em 0 0;
+        color: var(--accent);
+        font-family: Georgia, serif;
+      }
+
+      /* ── BLOCKQUOTE ────────────────────────────────── */
+      blockquote {
+        border-left: 4px solid var(--accent);
+        margin: 1.5rem 0;
+        padding: 0.75rem 1.25rem;
+        background: #eef2ff;
+        color: #3730a3;
+        font-style: italic;
+        border-radius: 0 6px 6px 0;
+      }
+
+      /* ── VIDEO EMBEDS ──────────────────────────────── */
+      .video-wrapper {
+        background: #0f172a;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        aspect-ratio: 16 / 9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 1.2rem 0 1.5rem;
+        color: #475569;
+      }
+
+      .video-wrapper span {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 0.85rem;
+        color: #475569;
+      }
+
+      .video-wrapper::before {
+        content: '▶';
+        font-size: 2.5rem;
+        color: #334155;
+      }
+
+      /* ── ASIDE ─────────────────────────────────────── */
+      aside {
+        position: sticky;
+        top: 70px;
+      }
+
+      .aside-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.25rem;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
+
+      .aside-card h4 {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin: 0 0 0.75rem;
+      }
+
+      .aside-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .aside-card ul li {
+        padding: 0.35rem 0;
+        border-bottom: 1px dashed var(--border);
+        font-size: 0.9rem;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        color: var(--ink);
+      }
+
+      .aside-card ul li:last-child { border-bottom: none; }
+
+      .aside-card ul li::before {
+        content: '→ ';
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+      }
+
+      .stat-box {
+        background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+        border-radius: 8px;
+        padding: 0.6rem 0.5rem;
+        text-align: center;
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--accent);
+        font-family: 'Segoe UI', system-ui, sans-serif;
+      }
+
+      .stat-box span {
+        font-size: 0.72rem;
+        color: var(--muted);
+        font-family: 'Segoe UI', system-ui, sans-serif;
+      }
+
+      /* ── CARNIVAL CARDS SECTION ────────────────────── */
+      .carnival-section {
+        background: linear-gradient(180deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+        padding: 4rem 1.5rem;
+        margin-top: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* floating light orbs */
+      .carnival-section::before,
+      .carnival-section::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        animation: float 6s ease-in-out infinite alternate;
+      }
+
+      .carnival-section::before {
+        width: 400px; height: 400px;
+        background: rgba(99, 102, 241, 0.35);
+        top: -100px; left: -100px;
+      }
+
+      .carnival-section::after {
+        width: 350px; height: 350px;
+        background: rgba(6, 182, 212, 0.3);
+        bottom: -80px; right: -80px;
+        animation-delay: -3s;
+      }
+
+      @keyframes float {
+        from { transform: translateY(0) scale(1); }
+        to   { transform: translateY(30px) scale(1.08); }
+      }
+
+      .carnival-section .section-title {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        font-weight: 800;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 0.4rem;
+        position: relative;
+      }
+
+      .carnival-section .section-sub {
+        text-align: center;
+        color: #a5b4fc;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 0.95rem;
+        margin-bottom: 2.5rem;
+        position: relative;
+      }
+
+      /* Bootstrap card overrides for carnival feel */
+      .carnival-card {
+        background: rgba(255,255,255,0.07);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 16px !important;
+        color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carnival-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+        pointer-events: none;
+      }
+
+      .carnival-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        background: rgba(255,255,255,0.13) !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(99,102,241,0.3);
+      }
+
+      .carnival-card .card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .carnival-card .card-title {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+
+      .carnival-card .card-text {
+        font-size: 0.88rem;
+        color: #c7d2fe;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        line-height: 1.6;
+      }
+
+      .carnival-card .card-tag {
+        display: inline-block;
+        background: rgba(99,102,241,0.4);
+        border: 1px solid rgba(99,102,241,0.6);
+        color: #a5b4fc;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 2px 10px;
+        border-radius: 99px;
+        margin-top: 1rem;
+      }
+
+      /* ── FOOTER ────────────────────────────────────── */
+      footer {
+        text-align: center;
+        padding: 1.5rem;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-size: 0.82rem;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        background: #fff;
+      }
+
+      /* ── RESPONSIVE ────────────────────────────────── */
+      @media (max-width: 768px) {
+        .page-wrapper {
+          flex-direction: column;
+        }
+
+        aside {
+          width: 100%;
+          position: static;
+        }
+
+        .stat-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 480px) {
+        header { padding: 2.5rem 1rem 2rem; }
+
+        .stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ── HEADER ─────────────────────────────────── -->
+    <header>
+      <h1>The AI Revolution</h1>
+      <p class="lead">
+        How artificial intelligence went from science fiction to the engine
+        reshaping every industry on the planet.
+      </p>
+    </header>
+
+    <!-- ── NAV ───────────────────────────────────── -->
+    <nav>
+      <a href="#origins">Origins</a>
+      <a href="#breakthroughs">Breakthroughs</a>
+      <a href="#society">Society</a>
+      <a href="#future">Future</a>
+      <a href="#explore">Explore</a>
+    </nav>
+
+    <!-- ── PAGE BODY ──────────────────────────────── -->
+    <div class="page-wrapper">
+
+      <!-- ── MAIN ARTICLE ───────────────────────── -->
+      <main>
+        <article>
+
+          <!-- SECTION 1 -->
+          <section id="origins">
+            <h2>Origins of a Revolution</h2>
+            <p>
+              The seeds of the AI revolution were planted decades before the world
+              noticed. In 1950, Alan Turing asked a deceptively simple question:
+              <em>"Can machines think?"</em> That question launched a field, fuelled
+              countless research labs, survived two brutal "AI winters," and finally
+              erupted into the mainstream with a force nobody was fully prepared for.
+            </p>
+            <p>
+              Early AI was rules-based — programmers encoded human knowledge by hand.
+              Useful in narrow domains, brittle everywhere else. The revolution only
+              became possible when researchers stopped writing rules and started
+              letting machines learn from data.
+            </p>
+
+            <blockquote>
+              "A computer would deserve to be called intelligent if it could deceive a
+              human into believing that it was human." — Alan Turing, 1950
+            </blockquote>
+
+            <h3>The Deep Learning Spark</h3>
+            <p>
+              In 2012, a neural network called AlexNet crushed every competitor in the
+              ImageNet image-recognition contest by a margin that stunned researchers.
+              <strong>Deep learning had arrived.</strong> GPU computing, massive datasets,
+              and decades of theoretical work finally converged into something that worked
+              — spectacularly.
+            </p>
+          </section>
+
+          <!-- VIDEO 1 -->
+          <section id="breakthroughs">
+            <h2>Key Breakthroughs</h2>
+            <p>
+              From speech recognition to protein folding, the last decade has been a
+              relentless drumbeat of milestones. Each breakthrough seemed impossible
+              until it wasn't.
+            </p>
+
+            <div class="video-wrapper">
+              <span>Video: The History of Deep Learning</span>
+            </div>
+
+            <h3>Language Models Change Everything</h3>
+            <p>
+              The introduction of the Transformer architecture in 2017 quietly
+              rewrote the rules. Within a few years, language models could write code,
+              draft legal documents, explain scientific papers, and hold conversations
+              indistinguishable from a knowledgeable human. By 2022, these tools were
+              in the hands of anyone with an internet connection.
+            </p>
+
+            <h3>AlphaFold and Scientific Discovery</h3>
+            <p>
+              In 2020, DeepMind's AlphaFold solved the 50-year-old protein-folding
+              problem. Scientists called it one of the greatest achievements in biology.
+              AI had moved from mimicking human tasks to accelerating scientific
+              discovery itself — a threshold with enormous implications for medicine,
+              materials science, and beyond.
+            </p>
+          </section>
+
+          <!-- SECTION 3 -->
+          <section id="society">
+            <h2>AI and Society</h2>
+            <p>
+              No technology reshapes society without friction. The AI revolution is
+              simultaneously a productivity miracle and a source of profound anxiety.
+              Jobs are being redefined. Creative professions are being disrupted.
+              Questions about bias, misinformation, and accountability have moved from
+              academic papers into parliamentary hearings.
+            </p>
+
+            <h3>The Jobs Debate</h3>
+            <p>
+              Economists disagree on the scale of labour displacement AI will cause.
+              History suggests new technologies create jobs even as they destroy others —
+              but the pace of AI adoption may be faster than workers can adapt. The
+              answer likely depends not just on the technology, but on the policy
+              choices societies make in response.
+            </p>
+
+            <h3>The Regulation Race</h3>
+            <p>
+              Governments worldwide are scrambling to establish frameworks before the
+              technology outpaces their ability to govern it. The EU's AI Act, executive
+              orders in the United States, and emerging standards bodies represent the
+              early architecture of AI governance — imperfect, contested, but necessary.
+            </p>
+          </section>
+
+          <!-- VIDEO 2 -->
+          <section id="future">
+            <h2>What Comes Next</h2>
+            <p>
+              The models available today may be remembered as primitive compared to what
+              is coming. Researchers are working on AI systems that can reason over
+              extended time horizons, learn from minimal examples, and operate
+              autonomously across complex real-world tasks.
+            </p>
+
+            <div class="video-wrapper">
+              <span>Video: The Road to AGI</span>
+            </div>
+
+            <p>
+              Whether artificial general intelligence arrives in five years or fifty,
+              the trajectory is clear: AI will become a foundational layer of
+              civilisation — as invisible and indispensable as electricity, and
+              potentially as transformative as the printing press.
+            </p>
+          </section>
+
+        </article>
+      </main>
+
+      <!-- ── SIDEBAR ─────────────────────────────── -->
+      <aside id="explore">
+
+        <div class="aside-card">
+          <h4>Key Milestones</h4>
+          <ul>
+            <li>1950 — Turing Test proposed</li>
+            <li>1997 — Deep Blue beats Kasparov</li>
+            <li>2012 — AlexNet wins ImageNet</li>
+            <li>2017 — Transformer invented</li>
+            <li>2020 — AlphaFold solves proteins</li>
+            <li>2022 — ChatGPT goes public</li>
+            <li>2024 — AI agents go mainstream</li>
+          </ul>
+        </div>
+
+        <div class="aside-card">
+          <h4>By the Numbers</h4>
+          <div class="stat-grid">
+            <div class="stat-box">
+              <strong>$200B</strong>
+              <span>AI investment 2023</span>
+            </div>
+            <div class="stat-box">
+              <strong>1.8T</strong>
+              <span>Parameters, GPT-4</span>
+            </div>
+            <div class="stat-box">
+              <strong>300M</strong>
+              <span>Jobs potentially impacted</span>
+            </div>
+            <div class="stat-box">
+              <strong>2028</strong>
+              <span>Est. $1T AI market</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="aside-card">
+          <h4>Further Reading</h4>
+          <ul>
+            <li>Attention Is All You Need</li>
+            <li>Superintelligence — Bostrom</li>
+            <li>The Alignment Problem</li>
+            <li>Human Compatible — Russell</li>
+          </ul>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- ── CARNIVAL CARDS ─────────────────────────── -->
+    <section class="carnival-section">
+      <div class="container" style="position:relative;">
+        <h2 class="section-title">Explore AI Topics</h2>
+        <p class="section-sub">Dive deeper into the technologies reshaping our world</p>
+
+        <div class="row g-4">
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 carnival-card p-3">
+              <span class="card-icon">🧠</span>
+              <div class="card-title">Neural Networks</div>
+              <p class="card-text">
+                Loosely inspired by the brain, neural networks learn patterns from
+                vast datasets to recognise images, understand speech, and predict text.
+              </p>
+              <span class="card-tag">Foundations</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 carnival-card p-3">
+              <span class="card-icon">💬</span>
+              <div class="card-title">Large Language Models</div>
+              <p class="card-text">
+                LLMs are trained on trillions of words, developing an emergent ability
+                to reason, write, code, and converse at near-human levels.
+              </p>
+              <span class="card-tag">NLP</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 carnival-card p-3">
+              <span class="card-icon">🎨</span>
+              <div class="card-title">Generative AI</div>
+              <p class="card-text">
+                From photorealistic images to original music, generative models can
+                create content that rivals human creativity — raising both wonder and
+                ethical questions.
+              </p>
+              <span class="card-tag">Creative AI</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 carnival-card p-3">
+              <span class="card-icon">🤖</span>
+              <div class="card-title">AI Agents</div>
+              <p class="card-text">
+                Agents use AI to plan and execute multi-step tasks autonomously —
+                browsing the web, writing code, and interacting with external tools
+                without constant human direction.
+              </p>
+              <span class="card-tag">Agentic AI</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 carnival-card p-3">
+              <span class="card-icon">🔬</span>
+              <div class="card-title">AI in Science</div>
+              <p class="card-text">
+                AlphaFold, weather forecasting, drug discovery — AI is becoming
+                science's most powerful tool, compressing decades of research into
+                months.
+              </p>
+              <span class="card-tag">Research</span>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 carnival-card p-3">
+              <span class="card-icon">⚖️</span>
+              <div class="card-title">AI Ethics & Safety</div>
+              <p class="card-text">
+                Bias, transparency, autonomy, and existential risk — ensuring AI
+                systems are safe, fair, and aligned with human values is one of the
+                defining challenges of our era.
+              </p>
+              <span class="card-tag">Governance</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────────── -->
+    <footer>
+      <p>Written as part of the HTML/CSS Bootcamp — Section 3 Mini Project &nbsp;·&nbsp; Article: AI Revolution</p>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
