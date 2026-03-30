@@ -1,5 +1,8 @@
 # LAB_HTML_CSS
 
+# how to use/view this project:
+- using liveserver from vscode: activate server on main.html
+- using browser: open main.html
 
 # Learn the about HTML/CSS and apply your learning on 4 mini projects!
 - Eatch mini project is in a seperate folder. 
